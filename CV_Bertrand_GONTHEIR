@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bertrand Gonthier – Consultant IA & Data Science</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1117;
+            --bg-card: #1a1d27;
+            --bg-card-hover: #22263a;
+            --surface: #252a3a;
+            --accent: #6c9cfc;
+            --accent-dim: #4a7df7;
+            --accent-glow: rgba(108,156,252,0.15);
+            --text: #e4e7f1;
+            --text-muted: #8b90a5;
+            --text-dim: #5c6178;
+            --border: #2a2f42;
+            --success: #6ee7b7;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            padding: 70px 40px 50px;
+            background: linear-gradient(160deg, #0f1117 0%, #161b2e 40%, #1c2240 100%);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(108,156,252,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .avatar {
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 30px rgba(108,156,252,0.2);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero-text h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            color: var(--white);
+        }
+
+        .hero-text .tagline {
+            font-size: 1.05rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .hero-text .location {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(108,156,252,0.25);
+            border-radius: 24px;
+            padding: 8px 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .btn-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0a66c2;
+            color: var(--white);
+            text-decoration: none;
+            padding: 9px 22px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .btn-linkedin:hover {
+            background: #004182;
+            transform: translateY(-1px);
+        }
+
+        .btn-linkedin svg {
+            width: 18px; height: 18px;
+            fill: currentColor;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        section { margin-bottom: 56px; }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Narrative ── */
+        .narrative {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .narrative::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-dim));
+        }
+
+        .narrative h2 {
+            border: none;
+            justify-content: center;
+            font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .narrative h2::after { display: none; }
+
+        .narrative p {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 14px;
+        }
+
+        .narrative .hl {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .tl-item {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px 28px;
+            margin-bottom: 18px;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .tl-item:hover {
+            border-color: rgba(108,156,252,0.3);
+            box-shadow: 0 0 24px rgba(108,156,252,0.06);
+        }
+
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -29px; top: 32px;
+            width: 12px; height: 12px;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+            border-radius: 50%;
+        }
+
+        .tl-date {
+            display: inline-block;
+            background: var(--surface);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .tl-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .tl-company {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+        }
+
+        .tl-item ul { list-style: none; }
+
+        .tl-item li {
+            padding: 3px 0 3px 16px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .tl-item li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .tag {
+            background: var(--surface);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── Formation ── */
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 14px;
+        }
+
+        .edu-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .edu-card .school {
+            color: var(--accent);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .edu-card .date {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            margin-bottom: 8px;
+        }
+
+        .edu-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ── Certifications ── */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 14px;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            transition: border-color 0.2s;
+        }
+
+        .cert-card:hover {
+            border-color: rgba(108,156,252,0.3);
+        }
+
+        .cert-card .cat {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .cert-card h4 {
+            color: var(--white);
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cert-card .src {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* ── Skills ── */
+        .skills-section h3 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .skill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .skill-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 8px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .skill-chip:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 28px;
+            color: var(--text-dim);
+            font-size: 0.82rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .hero { padding: 40px 20px 36px; }
+            .hero-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .avatar { width: 110px; height: 110px; }
+            .hero-text h1 { font-size: 1.8rem; }
+            .hero-actions { justify-content: center; }
+            .container { padding: 30px 16px; }
+            .timeline { padding-left: 26px; }
+            .tl-item::before { left: -23px; }
+            .narrative { padding: 28px 20px; }
+            .narrative p { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-inner">
+            <img src="BG_Avatar.png" alt="Bertrand Gonthier" class="avatar">
+            <div class="hero-text">
+                <h1>Bertrand Gonthier</h1>
+                <p class="tagline">Expert en Gestion de Patrimoine &amp; Pilotage de Projets Innovants</p>
+                <p class="location">Alsace, France</p>
+                <div class="hero-actions">
+                    <span class="badge">En transition vers Data Science &amp; Consulting IA</span>
+                    <a href="https://www.linkedin.com/in/bertrand-gonthier-a291a110" target="_blank" rel="noopener" class="btn-linkedin">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- COHÉRENCE -->
+        <div class="narrative">
+            <h2>Une vision claire : de l'expertise patrimoniale au consulting IA</h2>
+            <p>
+                Avec plus de <span class="hl">15 ans d'expérience</span> en gestion de patrimoine, pilotage d'activités et management d'équipes, Bertrand Gonthier souhaite aujourd'hui <span class="hl">conjuguer ses compétences managériales et sa rigueur analytique</span> au service de la transformation numérique des entreprises.
+            </p>
+            <p>
+                Son <span class="hl">doctorat en Biologie Moléculaire</span> lui a inculqué une méthodologie scientifique rigoureuse. Son <span class="hl">MBA en Management de Projets Innovants</span> a forgé sa capacité à conduire des projets complexes. Sa carrière en finance l'a doté d'une <span class="hl">maîtrise des indicateurs de performance (KPI)</span> et de l'analyse de données décisionnelles.
+            </p>
+            <p>
+                Les certifications récentes en <span class="hl">Python, bases de données et accès aux données web</span> concrétisent cette évolution : Bertrand construit aujourd'hui le pont entre <span class="hl">l'expertise métier de terrain</span> et les <span class="hl">technologies Data Science &amp; IA</span> pour devenir un consultant capable de traduire les enjeux business en solutions algorithmiques pertinentes.
+            </p>
+        </div>
+
+        <!-- EXPÉRIENCES -->
+        <section>
+            <h2>Parcours Professionnel</h2>
+            <div class="timeline">
+
+                <div class="tl-item">
+                    <span class="tl-date">janv. 2023 – mai 2026</span>
+                    <h3>Responsable de Secteur</h3>
+                    <p class="tl-company">BPCE Solutions Immobilières · Alsace</p>
+                    <ul>
+                        <li>Animation d'un réseau de prescripteurs</li>
+                        <li>Conseil en investissements immobiliers</li>
+                        <li>Développement commercial et pilotage d'activité</li>
+                        <li>Formation des collaborateurs</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Pilotage d'activité</span>
+                        <span class="tag">Développement commercial</span>
+                        <span class="tag">PowerPoint Expert</span>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <span class="tl-date">août 2017 – déc. 2022</span>
+                    <h3>Coach Patrimonial</h3>
+                    <p class="tl-company">UFF – Banque conseil en gestion de patrimoine · Strasbourg</p>
+                    <ul>
+                        <li>Développement et gestion d'un portefeuille de +170 clients</li>
+                        <li>Gestion d'actifs immobiliers et mobiliers</li>
+                        <li>Pilotage des indicateurs de performance (KPI)</li>
+                        <li>Animation de réseau sur les marchés financiers</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Gestion d'actifs</span>
+                        <span class="tag">KPI</span>
+                        <span class="tag">Leadership</span>
+                        <span class="tag">Communication</span>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <span class="tl-date">juil. 2014 – avr. 2018</span>
+                    <h3>Président</h3>
+                    <p class="tl-company">Crèche Parentale « La Ribambelle »</p>
+                    <ul>
+                        <li>Définition et mise en œuvre de la stratégie globale</li>
+                        <li>Gestion d'un budget annuel de 260 k€</li>
+                        <li>Recrutement et management d'une équipe de 7 professionnels et 34 bénévoles</li>
+                        <li>Relations extérieures avec les financeurs et reporting d'activité</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Stratégie</span>
+                        <span class="tag">Gestion budgétaire</span>
+                        <span class="tag">Optimisation processus</span>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <span class="tl-date">mars 2015 – août 2017</span>
+                    <h3>Chargé d'accompagnement</h3>
+                    <p class="tl-company">Coopérative Antigone et Coopénates · Strasbourg</p>
+                    <ul>
+                        <li>Gestion d'un portefeuille de +60 clients multi-activités</li>
+                        <li>Accompagnement de projets : définition des objectifs et suivi</li>
+                        <li>Expertise des dossiers de candidature</li>
+                        <li>Gestion juridique, administrative et financière</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Gestion de portefeuille</span>
+                        <span class="tag">Accompagnement projets</span>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <span class="tl-date">2012 – 2014</span>
+                    <h3>Responsable d'activité / Chef de projet Création</h3>
+                    <p class="tl-company">FENUA – Coopérative Antigone</p>
+                    <ul>
+                        <li>Lancement de projet innovant dans la restauration à domicile</li>
+                        <li>Gestion de la clientèle et développement d'outils marketing</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Entrepreneuriat</span>
+                        <span class="tag">Marketing</span>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <span class="tl-date">2009 – 2011</span>
+                    <h3>Équipe MPC</h3>
+                    <p class="tl-company">IS2M – Institut de Science des Matériaux</p>
+                    <ul>
+                        <li>Suivi de conception d'une unité de production</li>
+                        <li>Études marketing et plan stratégique pour un produit innovant</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Recherche</span>
+                        <span class="tag">Planification stratégique</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FORMATION -->
+        <section>
+            <h2>Formation</h2>
+
+            <div class="edu-card">
+                <h3>MBA – Management de Projets Innovants</h3>
+                <p class="school">École de Management Strasbourg</p>
+                <p class="date">2008 – 2009</p>
+                <p>Spécialisation en gestion de projet, marché et aptitudes managériales pour profils scientifiques.</p>
+            </div>
+
+            <div class="edu-card">
+                <h3>PhD – Biologie Moléculaire et Cellulaire</h3>
+                <p class="school">Université Louis Pasteur (Strasbourg 1)</p>
+                <p class="date">2004 – 2007</p>
+                <p>Étude de la croissance axonale et dendritique, développement de techniques d'exploration (vidéomicroscopie, culture cellulaire).</p>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section>
+            <h2>Certifications (2025)</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <p class="cat">Management</p>
+                    <h4>Inspiring and Motivating Individuals</h4>
+                    <p class="src">University of Michigan</p>
+                </div>
+                <div class="cert-card">
+                    <p class="cat">Gestion de Projet</p>
+                    <h4>Project Management Essentials</h4>
+                    <p class="src">Coursera</p>
+                </div>
+                <div class="cert-card">
+                    <p class="cat">Informatique &amp; Data</p>
+                    <h4>Python Data Structures</h4>
+                    <p class="src">University of Michigan</p>
+                </div>
+                <div class="cert-card">
+                    <p class="cat">Informatique &amp; Data</p>
+                    <h4>Using Databases with Python</h4>
+                    <p class="src">University of Michigan</p>
+                </div>
+                <div class="cert-card">
+                    <p class="cat">Informatique &amp; Data</p>
+                    <h4>Using Python to Access Web Data</h4>
+                    <p class="src">University of Michigan</p>
+                </div>
+                <div class="cert-card">
+                    <p class="cat">Réglementation</p>
+                    <h4>Orias</h4>
+                    <p class="src">Registre des intermédiaires en assurance, banque et finance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPÉTENCES -->
+        <section>
+            <h2>Compétences</h2>
+            <div class="skills-section">
+                <h3>Outils &amp; Technologies</h3>
+                <div class="skill-grid">
+                    <span class="skill-chip">Python</span>
+                    <span class="skill-chip">SQL</span>
+                    <span class="skill-chip">Microsoft PowerPoint (Expert)</span>
+                </div>
+                <h3>Soft Skills</h3>
+                <div class="skill-grid">
+                    <span class="skill-chip">Leadership</span>
+                    <span class="skill-chip">Communication</span>
+                    <span class="skill-chip">Négociation commerciale</span>
+                    <span class="skill-chip">Techniques d'animation</span>
+                    <span class="skill-chip">Pilotage d'activité</span>
+                    <span class="skill-chip">Gestion d'équipe</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Bertrand Gonthier · Alsace, France · Contact disponible sur demande
+    </footer>
+
+</body>
+</html>
